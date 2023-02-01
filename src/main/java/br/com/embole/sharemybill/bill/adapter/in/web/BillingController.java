@@ -1,4 +1,4 @@
-package br.com.embole.sharemybill.bill.adapter.in;
+package br.com.embole.sharemybill.bill.adapter.in.web;
 
 import br.com.embole.sharemybill.bill.application.port.in.BillingUseCase;
 import br.com.embole.sharemybill.bill.application.port.in.request.BillingRequest;

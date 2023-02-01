@@ -16,4 +16,5 @@ public class BillPerCustomerResponse {
     private BigDecimal originalAmount;
     private BigDecimal amountToPay;
     private BigDecimal totalDiscount;
+    private String paymentUrl;
 }
