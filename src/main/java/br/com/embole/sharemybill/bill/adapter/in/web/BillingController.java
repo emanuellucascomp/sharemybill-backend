@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(("/ap1/v1/billing"))
@@ -19,8 +22,11 @@ public class BillingController {
     private final BillingUseCase billingUseCase;
 
     @PostMapping
-    public ResponseEntity<BillingResponse> calculateBilling(@RequestBody @Valid BillingRequest request){
+    public ResponseEntity<BillingResponse> calculateBilling(@RequestBody @Valid BillingRequest request,
+                                                            UriComponentsBuilder uriComponentsBuilder){
         BillingResponse billingResponse = billingUseCase.calculateBilling(request);
-        return ResponseEntity.ok(billingResponse);
+        URI uri = uriComponentsBuilder.path("/billings").buildAndExpand().toUri();
+
+        return ResponseEntity.created(uri).body(billingResponse);
     }
 }
